@@ -5,7 +5,7 @@ const form = document.querySelector('form');
 const chatContainer = document.querySelector('#chat_container');
 
 let loadInternal;
-const server_url = 'http://localhost:8082/api/v1'
+const server_url = 'https://codex-g99u.onrender.com/api/v1'
 
 function loader(element) {
   element.textContent = '';
@@ -26,6 +26,9 @@ function typeText(element, text) {
     if (index < text.length) {
       element.innerHTML += text.charAt(index);
       index++;
+
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+      
     } else {
       clearInterval(interval);
     }
@@ -72,7 +75,7 @@ const handleSubmit = async (e) => {
   const uniqueId = generateUniqueId();
   chatContainer.innerHTML += chatStripe(true, " ", uniqueId);
 
-  chatContainer.scrllTop = chatContainer.scrollHeight;
+  chatContainer.scrollTop = chatContainer.scrollHeight;
 
   const messageDiv = document.getElementById(uniqueId);
 
